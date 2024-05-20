@@ -1,9 +1,12 @@
+// require fs module to read and save data
 const fs = require("fs");
 
 // This stores the submitted list of number
 let numbers = [];
-// File path to save the data since we dont have database
+// File path to save the data since we dont have a database
 const filePath = "numbersSaved.json";
+
+
 
 // logic that post json data
 const randomNumber = (req, res) => {
@@ -43,6 +46,8 @@ const randomNumber = (req, res) => {
 };
 
 
+
+
 // logic to retrieve  data from the file
 
 const getData = (req, res) => {
@@ -79,9 +84,9 @@ const getData = (req, res) => {
 
 // logic to patch data
 const patchNumber = (req, res) => {
-  // Logic to patch data
+ 
     try {
-      // Access a single number from req.body
+      // Input a single number from req.body
       const number = req.body.number;
   
       // Validate input

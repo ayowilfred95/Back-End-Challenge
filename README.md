@@ -36,9 +36,9 @@ npm start
 
 - URL: `http://localhost:4000/data`
 - Method: POST
-- Request Body: In Postman, copy the data from the `numbers.json` file in the project and paste it directly into the request body.
+- Request Body: In Postman, copy the data from the `numbers.json` file in the project directory and paste it directly into the request body in postman.
 
-   After the data is posted, it will be automatically saved to a file named `numbersSaved.json` in the project directory.
+   After the data is posted and a `Post` request is made,the data will be automatically saved to a file named `numbersSaved.json` in the project directory.
 
 ### GET Endpoint
 
