@@ -96,8 +96,6 @@ const patchNumber = (req, res) => {
         .json({ error: "Invalid input. Expected a single number." });
     }
 
-
-    console.log(numbers)
     let index = 0;
     while (index < numbers.length && numbers[index] < number) {
       index++;
