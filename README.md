@@ -1,10 +1,6 @@
-Sure, here's the updated README file with instructions on how to use the application and information about the automatic saving of data to a file:
-
----
-
 # Application Name
 
-This is a simple Node.js application using Express to provide three endpoints: POST, GET, and PATCH.
+This is a simple  REST API Node.js application using Express to provide three endpoints: POST, GET, and PATCH.
 
 ## Installation
 
