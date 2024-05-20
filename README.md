@@ -55,7 +55,7 @@ npm start
 - Request Body Format:
 ```json
 {
-  "number": 42
+    "number":111
 }
 ```
 
@@ -63,5 +63,5 @@ npm start
    numbersSaved.json serves database.
 
 ### Note
-After performing the `Patch` request, all the data will be replaced with the single number.
-In order to sent in a new data, a `Post` request has to made with 500 numbers sent from the request body
+After performing the `Patch` request, the array will find a correct position which atime is a first postion to be inserted
+After inserting the number into the array at the correct position, it saves the updated array to a file specified by `filepath`

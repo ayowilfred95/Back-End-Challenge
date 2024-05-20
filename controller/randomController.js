@@ -7,7 +7,6 @@ let numbers = [];
 const filePath = "numbersSaved.json";
 
 
-
 // logic that post json data
 const randomNumber = (req, res) => {
   try {
@@ -45,16 +44,13 @@ const randomNumber = (req, res) => {
   }
 };
 
-
-
-
 // logic to retrieve  data from the file
 
 const getData = (req, res) => {
   try {
-   // Read data from the file
-   const data = fs.readFileSync(filePath, 'utf8');
-   const number = JSON.parse(data);
+    // Read data from the file
+    const data = fs.readFileSync(filePath, "utf8");
+    const number = JSON.parse(data);
     console.log("The legth of the number is:", number.length);
     // Check if numbers is an array and has length of 500
     if (!Array.isArray(number) || number.length !== 500) {
@@ -75,7 +71,7 @@ const getData = (req, res) => {
     // Sort the array of numbers
     const sortedNumbers = [...number].sort((a, b) => a - b);
 
-    res.status(200).json({message:"Retrieved data",sortedNumbers});
+    res.status(200).json({ message: "Retrieved data", sortedNumbers });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal error", error });
@@ -84,31 +80,48 @@ const getData = (req, res) => {
 
 // logic to patch data
 const patchNumber = (req, res) => {
- 
-    try {
-      // Input a single number from req.body
-      const number = req.body.number;
-  
-      // Validate input
-      if (typeof number !== "number") {
-        return res.status(400).json({ error: "Invalid input. Expected a single number." });
-      }
-  
-      // Insert the number into the sorted position
-      let index = 0;
-      while (index < numbers.length && numbers[index] < number) {
-        index++;
-      }
-      numbers.splice(index, 0, number);
-  
-      // Save the updated data to the file
-      fs.writeFileSync(filePath, JSON.stringify(numbers));
-  
-      res.status(200).json({ message: "Number inserted successfully.", numbers });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Internal server error", error });
+  try {
+
+     // array is updated with the data read from the file and saved in numbers variable
+     const data = fs.readFileSync(filePath, 'utf8');
+     numbers = JSON.parse(data);
+     console.log(numbers)
+
+    // parse data from the request body
+    const number = req.body.number;
+
+    if (typeof number !== "number") {
+      return res
+        .status(400)
+        .json({ error: "Invalid input. Expected a single number." });
     }
-  };
+
+
+    console.log(numbers)
+    let index = 0;
+    while (index < numbers.length && numbers[index] < number) {
+      index++;
+    }
+    numbers.splice(index, 0, number);
+
+    fs.writeFile(filePath, JSON.stringify(numbers), (err) => {
+      if (err) {
+        console.error(err);
+        return res
+          .status(500)
+          .json({ message: "Failed to save numbers to file", error: err });
+      }
+      // Data written successfully
+      res
+        .status(200)
+        .json({ message: "Number inserted successfully.", numbers });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
+
 
 module.exports = { randomNumber, getData, patchNumber };
