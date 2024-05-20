@@ -7,13 +7,13 @@ This is a simple  REST API Node.js application using Express to provide three en
 1. Clone the repository to your local machine:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/ayowilfred95/Back-End-Challenge.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd <project_directory>
+cd Back-End-Challenge
 ```
 
 3. Install dependencies using npm:
